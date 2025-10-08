@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Semantik</title>
+</head>
+<body>
+
+    <header>
+        <h1>Data Mahasiswa</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Tentang</a></li>
+            <li><a href="#">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <article>
+            <h2>Isi Data Anda di Bawah Ini</h2>
+
+            <form action="htmlhtml" method="post" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td>Nama:</td>
+                        <td><input type="text" name="Nama" required autofocus></td>
+                    </tr>
+
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="email" name="Email" placeholder="nama@domain.com" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Website/Blog:</td>
+                        <td><input type="url" name="Website" placeholder="https://www.domainanda.com" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Tanggal Janji Temu:</td>
+                        <td><input type="date" name="TanggalJanji" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Jarak Rumah ke Kampus (km):</td>
+                        <td><input type="range" name="jarak" min="0" max="50" step="5" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Warna Kesukaan:</td>
+                        <td><input type="color" name="Warna" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Hobi:</td>
+                        <td>
+                            <input type="text" name="Hobi" placeholder="Pilih Hobi" list="hobby" required>
+                            <datalist id="hobby">
+                                <option value="Makan">
+                                <option value="Tidur">
+                                <option value="Membaca">
+                                <option value="Olahraga">
+                                <option value="Bermain Musik">
+                            </datalist>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Foto:</td>
+                        <td><input type="file" name="upload" accept=".jpg,.jpeg,.png" required></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" name="simpan" value="Simpan"></td>
+                    </tr>
+                </table>
+            </form>
+        </article>
+    </section>
+
+    <footer>
+        <p>&copy; HTML5 Semantik - Dibuat oleh Joened Sastra</p>
+    </footer>
+</body>
+</html>
