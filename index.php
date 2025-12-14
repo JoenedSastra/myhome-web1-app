@@ -1,16 +1,53 @@
 <?php
-$Pemasukan = 50000000;
-$Hutang_a = 15500000;
-$Bunga_Hutang_a = 0.05;
-$Hutang_b = 9500000;
-$Bunga_Hutang_b = 0.045;
+include 'config.php'; 
+session_start();
 
-$sisa = $pemasukan-($Hutang_a+($Hutang_a*$Bunga_Hutang_a));
-echo "Sisa uang adalah: $sisa";
-echo "<br />";
-$bunga_hutang= ($Hutang_a*$Bunga_Hutang_a)+($Hutang_b*$Bunga_Hutang_b);
-echo "jumlah total bunga hutang adalah: $bunga_hutang";
-echo "<br />";
-$jumlah_hutang= $Hutang_a+($Hutang_a*$Bunga_Hutang_a)+$Hutang_b+($Hutang_b);
-echo "jumlah total hutang adalah: $jumlah_hutang";
+if (isset($_SESSION['username'])) {
+    header("Location: sukses_login.php"); 
+    exit();
+}
+if (isset($_POST['submit'])) {
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password_hashed_input = hash('sha256', $_POST['password']); 
+    $sql = "SELECT * FROM users WHERE email= '$email' AND password= '$password_hashed_input'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) { 
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['username'] = $row['username'];
+        header("Location: sukses_login.php");
+        exit();
+    } else {
+        echo "<script>alert('Email atau Password Anda Salah, silahkan cobalagi!')</script>";
+    }
+}
 ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+    <title>Niagahoster Tutorial login</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action="" method="POST" class="login-email">
+            <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p> 
+            <div class="input-group">
+                <input type="email" placeholder="Email" name="email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" name="password" required>
+            </div>
+            <div class="input-group">
+                <button name="submit" class="btn">Login</button>
+            </div>
+            <p class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
+        </form>
+    </div>
+</body>
+</html>
